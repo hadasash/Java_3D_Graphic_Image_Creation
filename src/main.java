@@ -6,7 +6,7 @@ import static primitives.Util.*;
 /**
  * Test program for the 1st stage
  *
- * @author Adi Ashkenazi && Hadasa Fox
+ * @author Adi Ashkenazi and Hadasa Fox
  */
 public final class main 
 {
