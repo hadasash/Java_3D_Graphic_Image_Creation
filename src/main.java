@@ -19,7 +19,7 @@ public final class main
     public static void main(String[] args) 
     {
     	try 
-        { // test zero vector
+        { //test zero vector
             new Vector(0, 0, 0);
             out.println("ERROR: zero vector does not throw an exception");
         } catch (IllegalArgumentException e) {}
