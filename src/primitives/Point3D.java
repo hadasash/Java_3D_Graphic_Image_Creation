@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package primitives;
 
 public class Point3D 
@@ -72,11 +73,14 @@ public Vector subtract(Point3D p)
  * @param p point.
  * @return the root of the distance.
  */
-public double distanceSquared(Point3D p)
+public double distanceSquared(Point3D other)
 {
 	
-	Vector v= p.subtract(ZERO);
-	return v.dotProduct(v);
+	double dx = x.coord - other.x.coord;
+    double dy = y.coord - other.y.coord;
+    double dz = z.coord - other.z.coord;
+	return dx * dx + dy * dy + dz * dz;
+
 }
 /**
  * A function that receives a point and calculates the root of the distance between the two.

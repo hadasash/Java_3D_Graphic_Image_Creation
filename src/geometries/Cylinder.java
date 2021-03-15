@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package geometries;
 import primitives.*;
 
@@ -9,8 +10,7 @@ double height;
  * 
  * @param p The point. 
  */
-public Vector getNormal(Point3D p) 
-{
+public Vector getNormal(Point3D p) {
 	return null;
 }
 /**
@@ -19,8 +19,7 @@ public Vector getNormal(Point3D p)
  * @param ray ray of the cylinder.
  * @param height height of the cylinder.
  */
-public Cylinder(double radius, Ray ray, double height)
-{
+public Cylinder(double radius, Ray ray, double height){
 	super(ray,radius);
 	this.height = height;
 }
@@ -28,16 +27,14 @@ public Cylinder(double radius, Ray ray, double height)
  * 
  * @return get height.
  */
-public double getHeight() 
-{
+public double getHeight() {
 	return height;
 }
 /**
  * ovveride the toString.
  */
 @Override
-public String toString() 
-{
+public String toString() {
 	return "Cylinder [height=" + height + "]";
 }
 

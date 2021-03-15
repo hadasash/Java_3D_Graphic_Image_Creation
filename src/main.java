@@ -30,9 +30,9 @@ public final class main
 
         // test length..
         try {
-        if (!isZero(v1.lenghtSquared() - 14))
+        if (!isZero(v1.lengthSquared() - 14))
             out.println("ERROR: lengthSquared() wrong value");
-        if (!isZero(new Vector(0, 3, 4).lenght() - 5))
+        if (!isZero(new Vector(0, 3, 4).length() - 5))
             out.println("ERROR: length() wrong value");}
         catch(IllegalArgumentException e){}
 
@@ -50,7 +50,7 @@ public final class main
         } catch (IllegalArgumentException e) {}
         Vector vr = v1.crossProduct(v3);
         try {
-        if (!isZero(vr.lenght() - v1.lenght() * v3.lenght()))
+        if (!isZero(vr.length() - v1.length() * v3.length()))
             out.println("ERROR: crossProduct() wrong result length");
         if (!isZero(vr.dotProduct(v1)) || !isZero(vr.dotProduct(v3)))
             out.println("ERROR: crossProduct() result is not orthogonal to its operands");
@@ -64,7 +64,7 @@ public final class main
         
         if (vCopy != vCopyNormalize)
             out.println("ERROR: normalize() function creates a new vector");
-        if (!isZero(vCopyNormalize.lenght() - 1))
+        if (!isZero(vCopyNormalize.length() - 1))
             out.println("ERROR: normalize() result is not a unit vector");
         Vector u = v.normalized();
         if (u == v)

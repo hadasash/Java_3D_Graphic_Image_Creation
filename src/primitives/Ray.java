@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package primitives;
 
 public class Ray 
@@ -9,12 +10,19 @@ Vector dir;
  * @param p0 point.
  * @param dir vector.
  */
+
 public Ray(Point3D p0, Vector dir) 
 {
 	super();
 	this.p0 = p0;
 	this.dir = dir.normalized();
 	
+}
+public Point3D getP0() {
+	return p0;
+}
+public Vector getDir() {
+	return dir;
 }
 /**
  * Function that performs comparison.

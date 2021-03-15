@@ -1,8 +1,9 @@
+// Adi and Hadasa
 package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 
-class Sphere 
+public class Sphere 
 {
 Point3D center;
 double radius;
@@ -24,7 +25,8 @@ public Sphere(Point3D center, double radius)
  */
 public Vector getNormal(Point3D p) 
 {
-	return null;
+	return center.subtract(p).normalized();
+
 }
 /**
  * get center.

@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package geometries;
 
 import java.util.List;
@@ -8,10 +9,9 @@ import static primitives.Util.*;
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
  * 
- * @author Adi Ashkenazi && Hadasa Fox
+ * @author Dan
  */
-public class Polygon implements Geometry 
-{
+public class Polygon implements Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -42,8 +42,7 @@ public class Polygon implements Geometry
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	public Polygon(Point3D... vertices) 
-	{
+	public Polygon(Point3D... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
 		this.vertices = List.of(vertices);
@@ -83,10 +82,8 @@ public class Polygon implements Geometry
 		}
 	}
 
-	
-	public Vector getNormal(Point3D point) 
-	{
-		
+	@Override
+	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
 	}
 }

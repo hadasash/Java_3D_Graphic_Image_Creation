@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package geometries;
 import primitives.*;
 
@@ -54,8 +55,7 @@ public Point3D getQ0()
  */
 public Vector getNormal(Point3D p)
 {
-
-	return null;
+	return normal;
 }
 /**
  * A function that all the bodies in the geometric department will override and realize according to the three-dimensional body.

@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package geometries;
 import primitives.*;
 
@@ -23,7 +24,24 @@ public Tube(Ray axisRay, double radius)
  */
 public Vector getNormal(Point3D p) 
 {
-	return null;
+	//get ray point and vector
+    Point3D rayP = axisRay.getP0();
+    Vector rayV = axisRay.getDir();
+
+    //get point on the same level as the given point
+    double t = rayV.dotProduct(p.subtract(rayP));
+
+    //if the point is not on the same level then get the point
+    //and return the normal
+    if(!Util.isZero(t)){
+        Point3D o = rayP.add(rayV.scale(t));
+        return p.subtract(o).normalized();
+    }
+
+    //if the point is on the same level then return normal
+    return p.subtract(axisRay.getP0()).normalized();
+
+
 }
 /**
  * get axis ray.

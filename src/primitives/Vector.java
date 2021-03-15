@@ -1,3 +1,4 @@
+// Adi and Hadasa
 package primitives;
 
 public class Vector 
@@ -72,7 +73,8 @@ public Vector add(Vector v)
  */
 public Vector subtract(Vector v)
 {
-	return (head.subtract(v.getHead()));	
+	return (head.subtract(v.getHead()));
+
 }
 /**
  * A function that receives a scalar and performs a doubling of the vector in the scalar it received.
@@ -114,7 +116,7 @@ public double dotProduct(Vector v)
  * A function that receives a vector and returns the root of the length between two vectors.
  * @return lenght Squared.
  */
-public double lenghtSquared()
+public double lengthSquared()
 {
 	return (head.distanceSquared(Point3D.ZERO));
 }
@@ -122,9 +124,9 @@ public double lenghtSquared()
  * A function that receives a vector and returns the length between two vectors.
  * @return length.
  */
-public double lenght()
+public double length()
 {
-	return (Math.sqrt(lenghtSquared()));
+	return (Math.sqrt(lengthSquared()));
 }
 /**
  * A function that normalizes the resulting vector.
@@ -132,9 +134,10 @@ public double lenght()
  */
 public Vector normalize() 
 {
-	double len=lenght();
-	this.head=new Point3D(head.x.coord/len,head.y.coord/len,head.z.coord/len);
+	double len = length();
+	this.head = new Point3D(head.x.coord / len, head.y.coord / len, head.z.coord / len);
 	return this;
+
 }
 /**
  * A function retun the normalized vector.
@@ -142,7 +145,8 @@ public Vector normalize()
  */
 public Vector normalized() 
 {
-	return new Vector(normalize().head);	
+	return new Vector(normalize().head);
+	
 }
 
 /**
