@@ -1,6 +1,5 @@
 // Adi and Hadasa
 package geometries;
-
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -9,9 +8,10 @@ import static primitives.Util.*;
  * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
  * 
- * @author Dan
+ * @author Dan 
  */
-public class Polygon implements Geometry {
+public class Polygon implements Geometry 
+{
 	/**
 	 * List of polygon's vertices
 	 */
@@ -86,4 +86,17 @@ public class Polygon implements Geometry {
 	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
 	}
+	
+	/*************** intersections *****************/
+	/**
+	 * we need this function because we implemented findIntersections of triangle that extends polygon and need to implement intersectable (that "Geometry" interface extends), as well.
+	 * it returns null anyway, right now we dont implement this bonus.
+	 */
+	@Override
+	public List<Point3D> findIntersections(Ray ray) 
+	{
+		return null;
+	}
+	
+	
 }

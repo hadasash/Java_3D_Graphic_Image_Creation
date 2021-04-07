@@ -1,14 +1,17 @@
+// Adi and Hadasa
 package geometries;
-
 import primitives.Point3D;
 import primitives.Vector;
 
-interface Geometry 
+/**
+ * interface of geometry that has to implement the normal
+ * @author hadasa and adi
+ */
+interface Geometry extends Intersectable
 {
 	/**
-	 * A function that all the bodies in the geometric department will override and realize according to the three-dimensional body.
-	 * @param point The point for which the function calculates the normal with the body.
-	 * @return The normal
+	 * @param point
+	 * @return the normal vector
 	 */
-	public Vector getNormal(Point3D point) ;
+	public Vector getNormal(Point3D point);
 }
