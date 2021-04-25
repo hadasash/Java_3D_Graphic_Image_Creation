@@ -66,7 +66,25 @@ public class Camera
 	{
 		return vRight;
 	}
-	
+	public double getDistance() 
+	{
+		return distance;
+	}
+	/**
+	 * @return the width of v-p
+	 */
+	public double getwidth() 
+	{
+		return width;
+	}
+	/**
+	 * @return the height of v-p
+	 */
+	public double getheight() 
+	{
+		return height;
+	}
+
 	/**
 	 * @param _width view plane
 	 * @param _height view plane
@@ -131,5 +149,6 @@ public class Camera
 
 
 }
+
 
 

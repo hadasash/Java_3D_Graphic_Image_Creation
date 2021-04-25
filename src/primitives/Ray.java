@@ -2,6 +2,8 @@
 package primitives;
 import static primitives.Util.*;
 
+import java.util.List;
+
 /**
  * 
  * @author Adi and Hadasa
@@ -39,14 +41,33 @@ public class Ray {
 	}
 	
 	/**
-	 * @param t- scalar
-	 * @return the new point->p0+t*dir
+	 * @param t scalar
+	 * @return  new point
 	 */
 	public Point3D getPoint(double t)
-	{
+	{//Like Vector's Scalar but with a starting point in mind
 		Point3D tmp=new Point3D(p0.x,p0.y,p0.z);
-		return isZero(t) ? p0 : tmp.add(dir.scale(t));//takes the beginning of the ray and adds the vector*scalar point that we get.
+		return isZero(t) ? p0 : tmp.add(dir.scale(t));
 	}
+	public Point3D findClosestPoint(List<Point3D> points)
+	{
+		if (points==null)
+			return null;
+
+		Point3D closestP=points.get(0);			//put the first point on the list as the closest point
+		double min=p0.distance(points.get(0));	
+
+		for(int i=0; i<points.size(); i++) 		
+		{
+			if (p0.distance(points.get(i))<min) //If the distance is less than the distance of the nearest point replaces them
+			{
+				min=p0.distance(points.get(i));
+				closestP=points.get(i);		    
+			}
+		}
+		return closestP;					    //return is the closest point-with min distance from p0.
+	}
+
 
 	/*************** Admin *****************/
 	@Override
