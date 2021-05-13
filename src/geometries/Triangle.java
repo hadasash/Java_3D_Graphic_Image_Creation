@@ -1,13 +1,14 @@
 // Adi and Hadasa
 package geometries;
+
 import primitives.*;
 import java.util.List;
+
 import static primitives.Util.*;
 
 /**
  * 
- * @author  Adi and Hadasa
-
+ * @author Adi & Hadasa
  *
  */
 
@@ -56,32 +57,42 @@ public class Triangle extends Polygon
 	/*************** intersections *****************/
 	/**
 	 * @param ray
-	 * @return a list of intersections of the ray with the triangle
+	 * @return a list of GeoPoints- intersections of the ray with the triangle, and this triangle
 	 */
 	@Override
-	public List<Point3D> findIntersections(Ray ray)
+	public List<GeoPoint> findGeoIntersections(Ray ray)
 	{
 
-		List<Point3D> intersections = plane.findIntersections(ray);//find intersections with the plane
-		if (intersections == null) return null;//no intersections
+		List<GeoPoint> intersections = plane.findGeoIntersections(ray);//find intersections with the plane- triangle extends polygon, and polygon contains a plane.
+		if (intersections == null) return null;//no intersections with the plane
 
 		Point3D p0 = ray.getP0();
 		Vector v = ray.getDir();
 
-		//v1 v2 v3 are the vectors between p0 to each one of the triangle vertices to create a pyramid
+		//v1 v2 v3 are the vectors between p0 to each one of the triangle vertices, to create a kind of a pyramid
 		Vector v1 = vertices.get(0).subtract(p0).normalized();
 		Vector v2 = vertices.get(1).subtract(p0).normalized();
 		Vector v3 = vertices.get(2).subtract(p0).normalized();
-		
-		double s1 = v.dotProduct(v1.crossProduct(v2));
-		if (isZero(s1)) return null;//the ray is on the plane v1-v2, it means its not inside the triangle but on its edge (or on the vertex, or on the edge continue)
-		double s2 = v.dotProduct(v2.crossProduct(v3));
-		if (isZero(s2)) return null;//the ray is on  the plane v2-v3, it means its not inside the triangle but on its edge 
-		double s3 = v.dotProduct(v3.crossProduct(v1));
-		if (isZero(s3)) return null;//the ray is on the plane v3-v1, it means its not inside the triangle but on its edge 
 
-		if ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0)) //if all the s1,s2,s3 positive or negative return the ray intersects the triangle.
-			return intersections;
+		//Vector n1=v1.crossProduct(v2)
+		//Vector n2=v2.crossProduct(v3)
+		//Vector n3=v3.crossProduct(v1)
+		
+		double s1 = v.dotProduct(v1.crossProduct(v2));//s1=v.dotProduct(n1)
+		if (isZero(s1)) return null;//the ray is on the peah of the plane v1-v2, it means its not inside the triangle but on its edge (or on the vertex, or on the edge continue)
+		double s2 = v.dotProduct(v2.crossProduct(v3));//s2=v.dotProduct(n2)
+		if (isZero(s2)) return null;//the ray is on the peah of the plane v2-v3, it means its not inside the triangle but on its edge (or on the vertex, or on the edge continue)
+		double s3 = v.dotProduct(v3.crossProduct(v1));//s3=v.dotProduct(n3)
+		if (isZero(s3)) return null;//the ray is on the peah of the plane v3-v1, it means its not inside the triangle but on its edge (or on the vertex, or on the edge continue)
+
+		if ((s1 > 0 && s2 > 0 && s3 > 0) || (s1 < 0 && s2 < 0 && s3 < 0)) //if all the s1,s2,s3 are all positive or negative- the ray intersects the triangle.
+		{
+            for (GeoPoint geo : intersections) 
+            {
+                geo.geometry = this;//triangle and not plane
+            }
+			return intersections;//return the intersection
+		}
 		else
 			return null;//the ray is on the plane but outside the triangle
 	}

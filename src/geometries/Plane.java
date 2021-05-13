@@ -1,5 +1,5 @@
-// Adi and Hadasa
 package geometries;
+
 import java.util.List;
 import static primitives.Util.*;
 import primitives.*;
@@ -7,43 +7,39 @@ import primitives.*;
 /**
  * 
  * @author Adi and Hadasa
-
  *
  */
 
-public class Plane implements Geometry
+public class Plane extends Geometry
 {
 	Point3D q0;
 	Vector normal;
 
 	/*************** ctors *****************/
-	
 	/**
-	 * A constractor who gets the data on the plane.
-	 * @param q0 The point of the plane.
-	 * @param normal The normal to the plane.
+	 * ctor 
+	 * @param q0
+	 * @param normal
 	 */
-
 	public Plane(Point3D q0, Vector normal) {
 		super();
 		this.q0 = q0;
 		this.normal = normal;
 	}
 	/**
-	 * constractor with 3 Point3D.
-	 * @param p1 point one. 
-	 * @param p2 point two.
-	 * @param p3 point three.
+	 * ctor 
+	 * @param x
+	 * @param y
+	 * @param z
 	 */
-
 	public Plane(Point3D x,Point3D y,Point3D z)
 	{
 		super();
 		try
 		{
-			this.q0 = x;
-			Vector v1 = (x.subtract(y));
-			Vector v2 = (x.subtract(z));
+			this.q0 = x;				//the point that represents the plane
+			Vector v1 = (x.subtract(y));//get one vector on plane
+			Vector v2 = (x.subtract(z));//get second vector on plane
 			this.normal = v1.crossProduct(v2).normalized();//if v1 and v2 are on the same direction of vector- the cross product and the normal will be zero vector.
 		}
 
@@ -61,17 +57,17 @@ public class Plane implements Geometry
 		return q0;
 	}
 
-	/*************** normalize *****************/
 	/**
 	 * @param p
-	 * @return  normal 
+	 * @return the normal vector
 	 */
 	public Vector getNormal(Point3D p) {
-				return normal;
+		return normal;
 	}
 
+	/*************** normalize *****************/
 	/**
-	 * @return  normal 
+	 * @return the normal vector
 	 */
 	public Vector getNormal() {
 		return normal;
@@ -80,10 +76,10 @@ public class Plane implements Geometry
 	/*************** intersections *****************/
 	/**
 	 * @param ray
-	 * @return a list of intersections of the ray with the plane
+	 * @return a list of GeoPoints- intersections of the ray with the plane, and this plane
 	 */
 	@Override
-	public List<Point3D> findIntersections(Ray ray)
+	public List<GeoPoint> findGeoIntersections(Ray ray)
 	{
 		try {
 			Vector vec=q0.subtract(ray.getP0());//creating a new vector according to the point q0 and the starting point of the ray (P0)
@@ -99,18 +95,17 @@ public class Plane implements Geometry
 			else if(t > 0) // the ray crosses the plane
 			{
 				Point3D p=ray.getPoint(t);//get the new point on the ray, multiplied by the scalar t. p is the intersection point.
-				return List.of(p);//if so, return the point- the intersection
+				return List.of(new GeoPoint(this,p));//if so, return the point- the intersection
 			}
 			else // the ray doesn't cross the plane
 				return null;	
 		}
-		catch(Exception ex) {
+
+		catch(Exception ex) //catch exceptions in the vector creation
+		{
 			return null;
 		}
-
 	}
-
-
 
 	/*************** admin *****************/
 	@Override

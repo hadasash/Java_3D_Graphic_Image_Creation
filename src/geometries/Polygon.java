@@ -1,5 +1,6 @@
 // Adi and Hadasa
 package geometries;
+
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -10,7 +11,7 @@ import static primitives.Util.*;
  * 
  * @author Dan 
  */
-public class Polygon implements Geometry 
+public class Polygon extends Geometry 
 {
 	/**
 	 * List of polygon's vertices
@@ -82,6 +83,10 @@ public class Polygon implements Geometry
 		}
 	}
 
+	/*************** get *****************/
+	/**
+	 * @return the normal vector to the polygon's plane
+	 */
 	@Override
 	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
@@ -90,10 +95,10 @@ public class Polygon implements Geometry
 	/*************** intersections *****************/
 	/**
 	 * we need this function because we implemented findIntersections of triangle that extends polygon and need to implement intersectable (that "Geometry" interface extends), as well.
-	 * it returns null anyway, right now we dont implement this bonus.
+	 * so here in polygon it returns null anyway, right now we don't implement this bonus.
 	 */
 	@Override
-	public List<Point3D> findIntersections(Ray ray) 
+	public List<GeoPoint> findGeoIntersections(Ray ray) 
 	{
 		return null;
 	}

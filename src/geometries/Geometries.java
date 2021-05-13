@@ -1,14 +1,16 @@
 // Adi and Hadasa
 package geometries;
+
 import java.util.List;
-import primitives.Point3D;
+
 import primitives.Ray;
 import java.util.ArrayList;
 
 /**
- *interface of composite- contains a list of geometries that are intersectable.
- *it implements Intersectable interface  to check the intersections with all the geometries.
- * @author Adi and Hadasa
+ * interface of composite- contains a list of geometries that are intersectable.
+ * (and not implements all "Geometry interface" because we cannot define a normal to the composite object- it contains a few objects.
+ * but it does implement "Intersectable interface" because we want to check the intersections with all the geometries we have.
+ * @author Adi & Hadasa
  */
 public class Geometries implements Intersectable
 {
@@ -16,16 +18,18 @@ public class Geometries implements Intersectable
 
 	/*************** ctors *****************/
 	/**
-	 * restart new empty arrayList of geometries
+	 * default ctor- restart new empty arrayList of geometries
 	 */
 	public Geometries() 
 	{
 		super();
-		geometries=new ArrayList<Intersectable>();//arrayList  its faster to get into the items-
-		//we need to pass on the list of geometries as fast as we can when we get the intersections with them all
+		geometries=new ArrayList<Intersectable>();//we chose arrayList because its faster to get into the items-
+		//it takes O(1) and we need to pass on the list of geometries as fast as we can when we get the intersections with them all, for all the rays!
+		//its more important than adding geometries to the list or deleting, which take O(n) here in arrayList. 
 	}
+
 	/**
-	 * copy ctor.
+	 * copy-ctor. copies the given array of geometries.
 	 */
 	public Geometries(Intersectable...mygeometries) 
 	{
@@ -34,8 +38,9 @@ public class Geometries implements Intersectable
 			geometries.add(mygeometries[i]);
 	}
 
+	/*************** add *****************/
 	/**
-	 * adds new geometries to the list
+	 * function that adds new geometries to the list
 	 */
 	public void add(Intersectable...mygeometries) 
 	{
@@ -45,24 +50,25 @@ public class Geometries implements Intersectable
 
 	/**
 	 * @param ray
-	 * @return  list of intersections of the ray with all the geometries in the list. 
+	 * @return a list of intersections of the ray with all the geometries in the list. all the composite component.
+	 * we are using the design pattern of composite- here in one function we collect all the intersections of our geometry shapes by using their own "findInresection" function.
 	 */
 	@Override
-	public List<Point3D> findIntersections(Ray ray) 
+	public List<GeoPoint> findGeoIntersections(Ray ray) 
 	{
-		List<Point3D> intersections=new ArrayList<Point3D>();
-		for(int i=0; i<geometries.size(); i++) 
+		List<GeoPoint> intersections=new ArrayList<GeoPoint>();//new empty list of points and geometries
+		for(int i=0; i<geometries.size(); i++) 				 //move on all the geometries
 		{
-			if(geometries.get(i).findIntersections(ray)!=null) //if there are intersections to the ray with the specific geomety
+			if(geometries.get(i).findGeoIntersections(ray)!=null) //if there are intersections to the ray with the specific shape
 			{
-				for(int j=0; j<geometries.get(i).findIntersections(ray).size(); j++) //move on all the intersections point with this shape
+				for(int j=0; j<geometries.get(i).findGeoIntersections(ray).size(); j++) //move on all the intersections point with this shape
 				{
-					intersections.add(geometries.get(i).findIntersections(ray).get(j));//add them to general list of intersections
+					intersections.add(geometries.get(i).findGeoIntersections(ray).get(j));//add them to general list of intersections
 				}
 			}
 		}
 		if(intersections.size()==0)
-			return null;//there are not intersection 
-		return intersections;//return the intersections
+			return null;//No intersection at all
+		return intersections;//return all the intersections
 	}
 }

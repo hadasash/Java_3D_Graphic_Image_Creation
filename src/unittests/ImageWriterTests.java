@@ -17,27 +17,27 @@ public class ImageWriterTests
     @Test
     public void ImageWiterWriteToImageTest()
     {
-        ImageWriter imageWriter = new ImageWriter("image_01", 800, 500);
-        
+        ImageWriter imageWriter = new ImageWriter("image_01", 800, 500);//a new image-writer
+        //rezolution:
         int Nx = imageWriter.getNx();
         int Ny = imageWriter.getNy();
         
-        for (int i = 0; i < Ny; i++) //move on all the x in the matrix of pixels
+        for (int i = 0; i < Ny; i++) //move on all the x -im
         {
-            for (int j = 0; j < Nx; j++) //move on all the  y in the matrix of pixels
+            for (int j = 0; j < Nx; j++) //move on all the  y -im
             {
-                if (i % 50 == 0 || j % 50 == 0)//interval = 50
+                if (i % 50 == 0 || j % 50 == 0)//spaces for the grid 
                 {
-                	primitives.Color green=new primitives.Color(Color.red);// grid color
-                    imageWriter.writePixel(j, i, green);
+                	primitives.Color purple=new primitives.Color(Color.RED);//the grid color
+                    imageWriter.writePixel(j, i, purple);
                 }
-                else//all  the rest= the background
+                else// the background
                 {
-                	primitives.Color white=new primitives.Color(Color.green);// background color
+                	primitives.Color white=new primitives.Color(Color.WHITE);//the background color
                     imageWriter.writePixel(j, i, white);
                 }
             }
         }
-        imageWriter.writeToImage();//write the image
+        imageWriter.writeToImage();//create the image
     }
 }

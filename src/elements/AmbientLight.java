@@ -2,30 +2,23 @@ package elements;
 import primitives.*;
 
 /**
- * @author Adi Ashkenazi & Hadasa Fox
+ * class ambient light, the basic light we use
+ * @author Adi and Hadasa
  *
  */
-public class AmbientLight 
+public class AmbientLight extends Light
 {
-	Color Intensity;
+	//the color Intensity;
 	
 	/*************** ctor *****************/
 	/**
-	 * ctor that calculat intensity
+	 * ctor restarts the Intensity 
 	 * @param Ia
 	 * @param ka
 	 */
 	public AmbientLight(Color Ia, double ka)
 	{
-		Intensity=Ia.scale(ka);
+		super(Ia.scale(ka));// basic light class
 	}
 
-	/*************** get *****************/
-	/**
-	 * @return  Intensity
-	 */
-	public Color getIntensity()
-	{
-		return Intensity;
-	}
 }
