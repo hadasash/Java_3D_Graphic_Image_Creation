@@ -1,10 +1,11 @@
 package geometries;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import primitives.*;
 
 /**
- * interface of geometry  to findIntersections of ray with the geometry
+ * interface of geometry that has to implement findIntersections of a ray with the geometry
  * @author Adi and Hadasa
  */
 public interface Intersectable 
@@ -12,14 +13,14 @@ public interface Intersectable
 	/**
 	 * 
 	 * @param ray
-	 * @return list of GeoPints intersections and the geometries that are intersected.
+	 * @return list of GeoPints: intersections and the geometries that are intersected.
 	 */
     List<GeoPoint> findGeoIntersections(Ray ray);
 	
     /**
-     * 
+     *
      * @param ray
-     * @return list intersection point
+     * @return list of points: intersection point
      */
     default List<Point3D> findIntersections(Ray ray) 
     {
@@ -30,11 +31,11 @@ public interface Intersectable
 
     
 	/**
-	 * inner class
+	 * inner class, it's a PDS= passive data structure.
 	 */
 	public static class GeoPoint 
 	{
-		public Geometry geometry;	// geometry shape
+		public Geometry geometry;	//a geometry shape
 	    public Point3D point;		//intersection point with the geometry
 	    
 	    /**

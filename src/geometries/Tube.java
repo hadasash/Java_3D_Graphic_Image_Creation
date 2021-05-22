@@ -2,70 +2,74 @@
 package geometries;
 import primitives.*;
 
+/**
+ * 
+ * @author Adi and Hadasa
+ * 
+ */
+
 public class Tube 
 {
-Ray axisRay;
-double radius;
-/**
- *  * A constractor who gets the data on the Tube.
- * @param axisRay ray of the tube.
- * @param radius radius of the tube.
- */
-public Tube(Ray axisRay, double radius) 
-{
-	super();
-	this.axisRay = axisRay;
-	this.radius = radius;
-}
-/**
- * A function that all the bodies in the geometric department will override and realize according to the three-dimensional body.
- * @param p The point for which the function calculates the normal with the body.
- * @return The normal
- */
-public Vector getNormal(Point3D p) 
-{
-	//get ray point and vector
-    Point3D rayP = axisRay.getP0();
-    Vector rayV = axisRay.getDir();
+	Ray axisRay;
+	double radius;
 
-    //get point on the same level as the given point
-    double t = rayV.dotProduct(p.subtract(rayP));
+	/*************** ctor *****************/
+	/**
+	 * ctor that gets 2 parameters
+	 * @param axisRay
+	 * @param radius
+	 */
+	public Tube(Ray axisRay, double radius) {
+		super();
+		if(Util.isZero(radius) || radius < 0)
+            throw new IllegalArgumentException("Zero or negative radius");
+		this.axisRay = axisRay;
+		this.radius = radius;
+	}
 
-    //if the point is not on the same level then get the point
-    //and return the normal
-    if(!Util.isZero(t)){
-        Point3D o = rayP.add(rayV.scale(t));
-        return p.subtract(o).normalized();
-    }
+	/*************** gets *****************/
+	/**
+	 * @return the axisray
+	 */
+	public Ray getAxisRay() {
+		return axisRay;
+	}
 
-    //if the point is on the same level then return normal
-    return p.subtract(axisRay.getP0()).normalized();
+	/**
+	 * @return the radius
+	 */
+	public double getRadius() {
+		return radius;
+	}
+	/**
+	 * @param p
+	 * @return the normal
+	 */
+	public Vector getNormal(Point3D p) {
+		//get ray point and vector
+        Point3D p0 = axisRay.getP0();
+        Vector v = axisRay.getDir();//get the vector out of the ray of the tube
 
+        //get point on the same level as the given point
+        double t = v.dotProduct(p.subtract(p0));//t=v(p-p0), t is the projection of the vector (p-p0) on the ray v
 
-}
-/**
- * get axis ray.
- * @return ray.
- */
-public Ray getAxisRay() 
-{
-	return axisRay;
-}
-/**
- * get radius.
- * @return radius.
- */
-public double getRadius() 
-{
-	return radius;
-}
-/**
- * ovveride the toString.
- */
-@Override
-public String toString() 
-{
-	return "Tube [axisRay=" + axisRay + ", radius=" + radius + "]";
-}
+        //if the point is not on the same level then get the point
+        //and return the normal
+        if(!Util.isZero(t))
+        {
+            Point3D o = p0.add(v.scale(t));//o=p0+t*v
+            return p.subtract(o).normalized();//n=p-o
+        }
+
+        //if the point is on the same level then return normal
+        return p.subtract(p0).normalized();
+
+	}
+
+	/*************** admin *****************/
+	@Override
+	public String toString() {
+		return "Tube [axisRay=" + axisRay + ", radius=" + radius + "]";
+	}
 
 }

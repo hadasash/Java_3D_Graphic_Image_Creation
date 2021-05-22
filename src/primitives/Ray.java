@@ -1,13 +1,11 @@
-// Adi and Hadasa
 package primitives;
 import static primitives.Util.*;
 import geometries.Intersectable.GeoPoint;
-
 import java.util.List;
 
 /**
  * 
- * @author Adi & Hadasa
+ * @author Adi and Hadasa
  *
  */
 
@@ -15,18 +13,38 @@ public class Ray {
 	Point3D p0;
 	Vector dir;
 
+	//for constructing reflected and refracted rays
+	private static final double DELTA = 0.01;
+	
 	/*************** ctor *****************/
 	/**
 	 * ctor that gets 2 parameteres
 	 * @param p0
 	 * @param dir
 	 */
-	public Ray(Point3D p0, Vector dir) {
+	public Ray(Point3D p0, Vector dir) 
+	{
 		super();
 		this.p0 = p0;
 		this.dir = dir.normalized();
 
 	}
+	
+	/**
+     * ctor that gets 3 parameteres
+     *@param vector
+     * @param point
+     * @param normal
+     * @return point + normal.scale(±DELTA)
+     */
+	public Ray(Point3D point, Vector direction, Vector normal) 
+	{
+		this.dir = direction.normalized();
+		double nV = normal.dotProduct(direction);
+		Vector delta = normal.scale(nV >= 0 ? DELTA : -DELTA);
+		this.p0 = point.add(delta);
+
+    }
 
 	/*************** get *****************/
 	/**

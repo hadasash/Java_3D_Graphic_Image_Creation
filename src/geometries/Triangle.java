@@ -3,12 +3,11 @@ package geometries;
 
 import primitives.*;
 import java.util.List;
-
 import static primitives.Util.*;
 
 /**
  * 
- * @author Adi & Hadasa
+ * @author Adi and Hadasa
  *
  */
 
@@ -74,9 +73,6 @@ public class Triangle extends Polygon
 		Vector v2 = vertices.get(1).subtract(p0).normalized();
 		Vector v3 = vertices.get(2).subtract(p0).normalized();
 
-		//Vector n1=v1.crossProduct(v2)
-		//Vector n2=v2.crossProduct(v3)
-		//Vector n3=v3.crossProduct(v1)
 		
 		double s1 = v.dotProduct(v1.crossProduct(v2));//s1=v.dotProduct(n1)
 		if (isZero(s1)) return null;//the ray is on the peah of the plane v1-v2, it means its not inside the triangle but on its edge (or on the vertex, or on the edge continue)

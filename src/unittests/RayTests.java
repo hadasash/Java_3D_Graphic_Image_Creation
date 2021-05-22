@@ -15,7 +15,7 @@ import geometries.Plane;
 
 /**
  * 
- * @author Adi & Hadasa
+ * @author Adi and Hadasa
  *
  */
 

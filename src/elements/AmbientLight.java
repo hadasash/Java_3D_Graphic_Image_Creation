@@ -12,7 +12,7 @@ public class AmbientLight extends Light
 	
 	/*************** ctor *****************/
 	/**
-	 * ctor restarts the Intensity 
+	 * ctor 
 	 * @param Ia
 	 * @param ka
 	 */

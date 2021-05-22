@@ -5,7 +5,8 @@ import scene.*;
 /**
  * Adi and Hadasa
  *
- * An abstract class whose children must implement the traceRay function that returns the color of the pixel through which the beam passes
+ * its an abstract class, the bace for the ray tracer. the sons must implement the function traceRay 
+ * that return the color of the pixel that the ray pass through it.
  */
 public abstract class RayTracerBase 
 {
@@ -23,7 +24,7 @@ public abstract class RayTracerBase
 	/**
 	 * abstract method
 	 * @param ray
-	 * @return color of the pixel through which the beam passes
+	 * @return the color of the pixel that the ray pass through it
 	 */
 	public abstract Color traceRay(Ray ray);
 

@@ -1,29 +1,26 @@
 // Adi and Hadasa
-
 package unittests;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-import geometries.*;
 import primitives.*;
-
+import geometries.*;
 /**
- * Testing Polygons
  * 
  * @author Dan
  *
  */
+
 public class PolygonTests {
 
-    /**
-     * Test method for
-     * {@link geometries.Polygon#Polygon(primitives.Point3D, primitives.Point3D, primitives.Point3D, primitives.Point3D)}.
-     */
-    @Test
-    public void testConstructor() {
+	/**
+	 * Test method for {@link geometries.Polygon#Polygon(primitives.Point3D[])}.
+	 */
+	@Test
+	public void testPolygon() {
         // ============ Equivalence Partitions Tests ==============
-
         // TC01: Correct concave quadrangular with vertices in correct order
         try {
             new Polygon(new Point3D(0, 0, 1), new Point3D(1, 0, 0),
@@ -54,7 +51,6 @@ public class PolygonTests {
         } catch (IllegalArgumentException e) {}
 
         // =============== Boundary Values Tests ==================
-
         // TC10: Vertex on a side of a quadrangular
         try {
             new Polygon(new Point3D(0, 0, 1), new Point3D(1, 0, 0),
@@ -76,12 +72,12 @@ public class PolygonTests {
             fail("Constructed a polygon with vertice on a side");
         } catch (IllegalArgumentException e) {}
 
-    }
+	}
 
-    /**
-     * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
-     */
-    @Test
+	/**
+	 * Test method for {@link geometries.Polygon#getNormal(primitives.Point3D)}.
+	 */
+	@Test
     public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here
@@ -89,6 +85,6 @@ public class PolygonTests {
                 new Point3D(-1, 1, 1));
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals("Bad normal to trinagle", new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)));
-    }
+	}
 
 }

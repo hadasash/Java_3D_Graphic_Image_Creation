@@ -1,5 +1,4 @@
 package geometries;
-
 import java.util.List;
 import static primitives.Util.*;
 import primitives.*;
@@ -17,7 +16,7 @@ public class Plane extends Geometry
 
 	/*************** ctors *****************/
 	/**
-	 * ctor 
+	 * ctor that gets 2 parameters
 	 * @param q0
 	 * @param normal
 	 */
@@ -27,7 +26,7 @@ public class Plane extends Geometry
 		this.normal = normal;
 	}
 	/**
-	 * ctor 
+	 * ctor that gets 3 points
 	 * @param x
 	 * @param y
 	 * @param z
@@ -35,6 +34,7 @@ public class Plane extends Geometry
 	public Plane(Point3D x,Point3D y,Point3D z)
 	{
 		super();
+		//we want to check that it can really form a plane:
 		try
 		{
 			this.q0 = x;				//the point that represents the plane
@@ -101,7 +101,7 @@ public class Plane extends Geometry
 				return null;	
 		}
 
-		catch(Exception ex) //catch exceptions in the vector creation
+		catch(Exception ex) // exceptions of vector creation
 		{
 			return null;
 		}

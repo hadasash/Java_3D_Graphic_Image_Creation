@@ -7,22 +7,22 @@ import primitives.Util;
 import primitives.Vector;
 
 /**
+ * spot light- extends point light, but has direction to the light.
  * 
- * 
- * @author Adi & Hadasa
+ * @author Adi and Hadasa
  */
 public class SpotLight extends PointLight 
 {
-    private Vector direction;		// direction of  spot light
+    private Vector direction;		//the direction of the spot light
 
     /* ********* Constructors ***********/
 
     /**
-     *ctr with params
+     * a new spotlight
      *
-     * @param color  color of light
-     * @param position  position of  light source
-     * @param direction  direction of  light
+     * @param color the color of light
+     * @param position the position of the light source
+     * @param direction the direction of the light
      */
     public SpotLight(Color color, Point3D position, Vector direction) 
     {
@@ -35,7 +35,7 @@ public class SpotLight extends PointLight
     /**
      * get light intensity
      * @param p the point
-     * @return the light
+     * @return light
      */
     @Override
     public Color getIntensity(Point3D p) 

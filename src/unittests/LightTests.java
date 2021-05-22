@@ -1,7 +1,6 @@
 package unittests;
 
 import org.junit.Test;
-
 import elements.*;
 import geometries.*;
 import primitives.*;

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.imageio.*;
 
 /**
@@ -88,7 +87,8 @@ public class ImageWriter {
 	 * @param yIndex Y axis index of the pixel
 	 * @param color  final color of the pixel
 	 */
-	public void writePixel(int xIndex, int yIndex, Color color) {
+	public void writePixel(int xIndex, int yIndex, Color color) 
+	{
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
 

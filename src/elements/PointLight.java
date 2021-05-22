@@ -1,26 +1,28 @@
 package elements;
+
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Util;
 import primitives.Vector;
 
 /**
+ * pointy light source, spreads light to all around.
  * 
- * 
- * @author Adi & Hadasa
+ * @author Adi and Hadasa
  */
 public class PointLight extends Light implements LightSource 
 {
 	private Point3D position;		//the position of the point light
-	private double Kc=1;				
-	private double Kl=0;				
-	private double Kq=0;				
+	private double Kc=1;				// kc
+	private double Kl=0;				// kl
+	private double Kq=0;				// kq
+
 	/* ********* Constructors ***********/
 
 	/**
-	 * ctr
+	 * a new point light
 	 * @param color the color of the light
-	 * @param position the position 
+	 * @param position the position of the light source
 	 */
 	public PointLight(Color color, Point3D position) 
 	{
@@ -30,9 +32,9 @@ public class PointLight extends Light implements LightSource
 
 	/* ************* Getters & setters *******/
 	/**
-	 * get intensity
+	 * get light intensity
 	 * @param p the point
-	 * @return the light
+	 * @return light
 	 */
 	@Override
 	public Color getIntensity(Point3D p) 
@@ -45,7 +47,7 @@ public class PointLight extends Light implements LightSource
 	/**
 	 * get vector from light
 	 * @param p the point
-	 * @return the vector
+	 * @return vector
 	 */
 	@Override
 	public Vector getL(Point3D p)
@@ -63,11 +65,22 @@ public class PointLight extends Light implements LightSource
 	{
 		return position;
 	}
+	
+    /**
+     * get distance of lightsource from point
+     * @param p the point
+     * @return distance
+     */
+    @Override
+    public double getDistance(Point3D point) 
+    {
+        return position.distance(point);
+    }
 
 	/**
-	 * set Kc 
+	 * set Kc mekadem
 	 * @param Kc
-	 * @return the PointLight itself for design pattern of builder
+	 * @return the PointLight itself to allow design pattern of builder- to concatenate calls to setters.
 	 */
 	public PointLight setKc(double Kc) 
 	{
@@ -76,9 +89,9 @@ public class PointLight extends Light implements LightSource
 	}
 
 	/**
-	 * set kl 
+	 * set kl mekadem
 	 * @param kl
-	 * @return the PointLight itself for design pattern of builder
+	 * @return the PointLight itself to allow design pattern of builder.
 	 */
 	public PointLight setKl(double kl) 
 	{
@@ -87,9 +100,9 @@ public class PointLight extends Light implements LightSource
 	}
 
 	/**
-	 * set Kq 
+	 * set Kq mekadem
 	 * @param Kq
-	 * @return the PointLight itself for design pattern of builder
+	 * @return the PointLight itself to allow design pattern of builder.
 	 */
 	public PointLight setKq(double Kq) 
 	{

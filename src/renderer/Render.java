@@ -18,7 +18,6 @@ public class Render
 	Camera camera;				//the camera- the viewPlane, the position and vectors
 	RayTracerBase rayTracerBase;//in charge of tracing the rays and calculating the pixel's color
 	
-	//no constructor//
 	
 	/* ************* Setters *******/
 	/**
@@ -65,13 +64,12 @@ public class Render
 		//if one of the needed fields of Render is missing (a house with no walls)- throw exception.
 		if(imageWriter==null)
 			throw new IllegalArgumentException("no imageWriter");
+		if(rayTracerBase==null)
+			throw new IllegalArgumentException("no rayTracerBase");
 		if(rayTracerBase.scene==null)
 			throw new IllegalArgumentException("no scene");
 		if(camera==null)
 			throw new IllegalArgumentException("no camera");
-		if(rayTracerBase==null)
-			throw new IllegalArgumentException("no rayTracerBase");
-		
 
 		//rezolution:
 		int Nx = imageWriter.getNx(); //number of pixels on tzir x
