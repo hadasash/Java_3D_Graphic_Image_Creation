@@ -1,4 +1,5 @@
 package scene;
+import primitives.*;
 import primitives.Color;
 import geometries.*;
 
@@ -11,7 +12,7 @@ import elements.*;
 /**
  * this is scene class, it's a PDS= passive data structure,
  * so all the fields are public.
- * @author Adi and Hadasa
+ * @author efrat & esti
  *
  */
 public class Scene 
@@ -22,6 +23,7 @@ public class Scene
 	public Geometries geometries;		//the geometries that are in the scene
 
 	public List<LightSource> lights;	//the light sources in the scene
+	
 	
 	/*************** constructor *****************/
 	/**
@@ -75,5 +77,6 @@ public class Scene
         this.lights.addAll(Arrays.asList(lights));
         return this;
 	}
+	
 	
 }

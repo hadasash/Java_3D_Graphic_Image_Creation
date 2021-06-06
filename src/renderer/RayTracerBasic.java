@@ -1,10 +1,7 @@
 package renderer;
-
 import static primitives.Util.*;
 import primitives.Material;
-
 import java.util.List;
-
 import geometries.Intersectable.GeoPoint;
 import primitives.Color;
 import primitives.Point3D;
@@ -51,6 +48,30 @@ public class RayTracerBasic extends RayTracerBase
 			return calcColor(pointAndGeo, ray);
 		else							//if the ray doesn't intersect anything- return the background color
 			return scene.backGround;
+	}
+	
+	/**
+	 * @param list of rays
+	 * @return the color of the pixel that the rays pass through it- the average color calculated by the intersection points of the rays.
+	 */
+	public Color traceRays(List<Ray> rays)
+	{		
+		int count =1;
+		Ray r = rays.remove(0);
+		
+		GeoPoint closestPoint = findClosestIntersection(r);
+		Color color = (closestPoint == null ? scene.backGround: calcColor(closestPoint, r));//if no intersection- return background color
+		for(Ray ray: rays)
+		{
+			closestPoint = findClosestIntersection(ray);
+			Color c = closestPoint == null ? scene.backGround: calcColor(closestPoint, ray);
+			if(!(c.getColor().equals(color.getColor())))
+			{
+				color = color.add(c);//add the color created by this ray's intersection
+				count++;
+			}
+		}
+		return color.reduce(count);//reduce by the count of rays- to find the average color
 	}
 
 	/**

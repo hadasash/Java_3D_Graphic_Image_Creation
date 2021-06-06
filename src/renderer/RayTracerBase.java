@@ -1,4 +1,5 @@
 package renderer;
+import java.util.List;
 import primitives.*;
 import scene.*;
 
@@ -27,5 +28,12 @@ public abstract class RayTracerBase
 	 * @return the color of the pixel that the ray pass through it
 	 */
 	public abstract Color traceRay(Ray ray);
+	
+	/**
+	 * abstract method
+	 * @param list of rays
+	 * @return the color of the pixel that the rays pass through it- the average color
+	 */
+	public abstract Color traceRays(List<Ray> rays);
 
 }
